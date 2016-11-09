@@ -15,9 +15,10 @@ defmodule RepriseTest do
   test "my own beams have proper names" do
     for b <- Runner.beams,
       not Regex.match?(~r[/consolidated/], b),
-      f = b |> Path.split |> List.last,
-      do:
-        assert f =~ ~r/^Elixir\.Reprise\./ or f =~ ~r/^Elixir.Mix.Tasks\./
+      f = b |> Path.split |> List.last
+      do
+        assert f =~ ~r/^Elixir\.Reprise\./ or f =~ ~r/^Elixir.Mix.Tasks\./ or f =~ ~r/^gproc*/
+      end
   end
 
   test "can find my own modules" do
