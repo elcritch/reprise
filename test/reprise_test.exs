@@ -17,7 +17,7 @@ defmodule RepriseTest do
       not Regex.match?(~r[/consolidated/], b),
       f = b |> Path.split |> List.last
       do
-        assert f =~ ~r/^Elixir\.Reprise\./ or f =~ ~r/^Elixir.Mix.Tasks\./ or f =~ ~r/^gproc*/
+        assert f =~ ~r/^Elixir\.Reprise\./ or f =~ ~r/^Elixir.Mix.Tasks\./ or f =~ ~r/^(gproc|gen_leader)*/
       end
   end
 
@@ -27,7 +27,7 @@ defmodule RepriseTest do
       do: m
     refute mods == []
     for m <- mods, do:
-      assert "#{m}" =~ ~r/^Elixir\.Reprise\b/ or "#{m}" =~ ~r/^gproc*/
+      assert "#{m}" =~ ~r/^Elixir\.Reprise\b/ or "#{m}" =~ ~r/^(gproc|gen_leader)*/
   end
 
 end

@@ -19,8 +19,11 @@ defmodule Reprise.Mixfile do
   end
 
   defp deps do
-    [{:dialyze, "~> 0.2", only: :dev},
-     {:gproc, "~> 0.5.0"}]
+    [
+      {:dialyze, "~> 0.2", only: :dev},
+      {:gproc, "~> 0.5.0"},
+      {:gen_leader, "> 0.0.1"},
+    ]
   end
 
   defp description do
