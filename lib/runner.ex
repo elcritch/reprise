@@ -53,9 +53,11 @@ defmodule Reprise.Runner do
     :code.purge(module)
     module_obj = :code.load_file(module)
 
-    case :code.get_object_code(module) do
-      :error -> :error
-      code_obj -> :gproc.send({:p, :l, :reprise}, {:remote_reload, code_obj})
+    unless Regex.match?(~r[/consolidated/], b) do
+      case :code.get_object_code(module) do
+        :error -> :error
+        code_obj -> :gproc.send({:p, :l, :reprise}, {:remote_reload, code_obj})
+      end
     end
 
     module_obj
