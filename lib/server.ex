@@ -70,7 +70,7 @@ defmodule Reprise.Server do
     {:noreply, {timestamp, interval}}
   end
 
-  def handle_info({:remote_reload, code_obj}, {last, interval}) do
+  def handle_info(:remote_reload, code_obj, {last, interval}) do
     Runner.remote_reload(code_obj)
 
     {:noreply, {last, interval}}
