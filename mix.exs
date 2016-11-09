@@ -13,7 +13,7 @@ defmodule Reprise.Mixfile do
   def application do
     [mod: {Reprise, []},
       registered: [Reprise],
-      applications: [:logger, :gproc],
+      applications: [:logger],
       description: 'Simple module reloader',
      ]
   end
@@ -21,8 +21,9 @@ defmodule Reprise.Mixfile do
   defp deps do
     [
       {:dialyze, "~> 0.2", only: :dev},
-      {:gproc, "~> 0.5.0"},
-      {:gen_leader, "> 0.0.1"},
+      # {:gproc, "~> 0.5.0"},
+      # {:gen_leader, "> 0.0.1"},
+      # {:cpg, "~> 1.5"},
     ]
   end
 

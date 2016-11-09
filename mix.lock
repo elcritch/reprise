@@ -1,3 +1,7 @@
-%{"dialyze": {:hex, :dialyze, "0.2.0", "ecabf292e9f4bd0f7d844981f899a85c0300b30ff2dd1cdfef0c81a6496466f1", [:mix], []},
+%{"cpg": {:hex, :cpg, "1.5.4", "d42fe32290d08f59d5caffa26a424be691644d32ef3c79161d8cf780a0fa6cdb", [:rebar], [{:quickrand, "~> 1.5.4", [hex: :quickrand, optional: false]}, {:reltool_util, "~> 1.5.4", [hex: :reltool_util, optional: false]}, {:trie, "~> 1.5.4", [hex: :trie, optional: false]}]},
+  "dialyze": {:hex, :dialyze, "0.2.0", "ecabf292e9f4bd0f7d844981f899a85c0300b30ff2dd1cdfef0c81a6496466f1", [:mix], []},
   "gen_leader": {:hex, :gen_leader, "0.1.0", "4eff42117a135191a4cbeeb3dc8f7a288197a3ba19d29fad21eb301b62891a62", [:rebar3], []},
-  "gproc": {:hex, :gproc, "0.5.0", "2df2d886f8f8a7b81a4b04aa17972b5965bbc5bf0100ea6d8e8ac6a0e7389afe", [:rebar], []}}
+  "gproc": {:hex, :gproc, "0.5.0", "2df2d886f8f8a7b81a4b04aa17972b5965bbc5bf0100ea6d8e8ac6a0e7389afe", [:rebar], []},
+  "quickrand": {:hex, :quickrand, "1.5.4", "47add4755cc5f209cbeffd6f47c84061196cd7fad99fd8fd12418eb0d06b939d", [:rebar], []},
+  "reltool_util": {:hex, :reltool_util, "1.5.4", "24a7394f0121e71102ec8c689bb2c3139f64a455adc0d6ea46a224ef609d8cc4", [:rebar], []},
+  "trie": {:hex, :trie, "1.5.4", "dc9a5a076fee8a168feab7e35b5100adc58d6b4f031f4d87ce2f372fcffd8e53", [:rebar], []}}
