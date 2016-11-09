@@ -27,7 +27,7 @@ defmodule RepriseTest do
       do: m
     refute mods == []
     for m <- mods, do:
-      assert "#{m}" =~ ~r/^Elixir\.Reprise\b/
+      assert "#{m}" =~ ~r/^Elixir\.Reprise\b/ or "#{m}" =~ ~r/^gproc*/
   end
 
 end
