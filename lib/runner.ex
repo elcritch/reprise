@@ -52,6 +52,18 @@ defmodule Reprise.Runner do
   def reload(module) do
     :code.purge(module)
     :code.load_file(module)
+
+    case :code.get_object_code(module) do
+      :error -> :error
+      code_obj -> :gproc.send({:p, :l, :reprise}, {:remote_reload, code_obj})
+    end
+  end
+
+  @doc "Remotely reloads a single module."
+  def remote_reload({ module, binary, filename}) do
+    IO.puts("Remotly reloading module: #{inspect module} @ file: #{filename}")
+    :code.purge(module)
+    :code.load_binary( module, filename, binary )
   end
 
   @doc """

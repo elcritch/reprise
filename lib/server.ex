@@ -48,6 +48,10 @@ defmodule Reprise.Server do
   # callbacks
 
   def init(kw) do
+    # Register :reprise modules in Pub/Sub on all nodes
+    :gproc.reg({:p, :l, :reprise})
+
+    # Setup Intervals
     interval = kw[:interval]
     cond do
       !interval -> {:stop, "pass interval arg"}
@@ -58,10 +62,18 @@ defmodule Reprise.Server do
   end
 
   def handle_info(:wake, {last, interval}) do
+    # On wake, search for modified code
     timestamp = now()
     Runner.go(last, timestamp)
     wait(interval)
+
     {:noreply, {timestamp, interval}}
+  end
+
+  def handle_info({:remote_reload, code_obj}, {last, interval}) do
+    Runner.remote_reload(code_obj)
+
+    {:noreply, {last, interval}}
   end
 
   def handle_call({:interval, nil}, _from, st={_, interval}) do
