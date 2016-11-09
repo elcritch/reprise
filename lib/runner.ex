@@ -56,8 +56,9 @@ defmodule Reprise.Runner do
     case :code.get_object_code(module) do
       :error -> :error
       { module, binary, filename } = code_obj ->
-        unless Regex.match?(~r[/consolidated/], filename), do:
+        unless Regex.match?(~r[/consolidated/], filename) do
           :gproc.send({:p, :l, :reprise}, {:remote_reload, code_obj})
+        end
     end
 
     module_obj
