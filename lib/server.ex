@@ -49,7 +49,7 @@ defmodule Reprise.Server do
 
   def init(kw) do
     # Register :reprise modules in Pub/Sub on all nodes
-    :gproc.reg({:p, :l, :reprise})
+    :gproc.reg({:p, :g, :reprise})
 
     # Setup Intervals
     interval = kw[:interval]
