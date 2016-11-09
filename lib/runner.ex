@@ -66,7 +66,7 @@ defmodule Reprise.Runner do
 
   defp send_remotes(code_obj) do
     for member <- :pg2.get_members(:reprise) do
-      Process.broadcast(member, {:remote_reload, code_obj})
+      GenServer.cast(member, {:remote_reload, code_obj})
     end
   end
 
