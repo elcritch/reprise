@@ -51,12 +51,14 @@ defmodule Reprise.Runner do
   @spec reload(module) :: {:module, module} | {:error, atom}
   def reload(module) do
     :code.purge(module)
-    :code.load_file(module)
+    module_obj = :code.load_file(module)
 
     case :code.get_object_code(module) do
       :error -> :error
       code_obj -> :gproc.send({:p, :l, :reprise}, {:remote_reload, code_obj})
     end
+
+    module_obj
   end
 
   @doc "Remotely reloads a single module."
