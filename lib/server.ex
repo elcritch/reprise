@@ -52,7 +52,7 @@ defmodule Reprise.Server do
     # :gproc.reg({:p, :g, :reprise})
     :pg2.start()
     :pg2.create(:reprise)
-    
+
     :pg2.join(:reprise, self())
 
     # Setup Intervals
@@ -74,7 +74,7 @@ defmodule Reprise.Server do
     {:noreply, {timestamp, interval}}
   end
 
-  def handle_info({:remote_reload, code_obj}, {last, interval}) do
+  def handle_cast({:remote_reload, code_obj}, {last, interval}) do
     Runner.remote_reload(code_obj)
 
     {:noreply, {last, interval}}

@@ -57,11 +57,17 @@ defmodule Reprise.Runner do
       :error -> :error
       { module, binary, filename } = code_obj ->
         unless Regex.match?(~r[/consolidated/], to_string filename) do
-          :gproc.send({:p, :g, :reprise}, {:remote_reload, code_obj})
+          send_remotes code_obj
         end
     end
 
     module_obj
+  end
+
+  defp send_remotes(code_obj) do
+    for member <- :pg2.get_members(:reprise) do
+      Process.broadcast(member, {:remote_reload, code_obj})
+    end
   end
 
   @doc "Remotely reloads a single module."
