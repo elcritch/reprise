@@ -55,19 +55,17 @@ defmodule Reprise.Runner do
 
     case :code.get_object_code(module) do
       :error -> :error
-      { module, binary, filename } = code_obj ->
+      { _module, binary, filename } ->
         unless Regex.match?(~r[/consolidated/], to_string filename) do
-          send_remotes code_obj
+          try do
+            IEx.Helpers.nl(module)
+          catch
+            _,_ -> IO.puts("error live reloading module: #{module} on nodes: #{Node.list}")
+          end
         end
     end
 
     module_obj
-  end
-
-  defp send_remotes(code_obj) do
-    for member <- :pg2.get_members(:reprise) do
-      GenServer.cast(member, {:remote_reload, code_obj})
-    end
   end
 
   @doc "Remotely reloads a single module."
